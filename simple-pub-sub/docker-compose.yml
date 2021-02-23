@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  lb:
+    image: nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+  ws1:
+    image: wsapp
+    environment:
+      - AAPID=1111
+  ws2:
+    image: wsapp
+    environment:
+      - AAPID=2222
+  ws3:
+    image: wsapp
+    environment:
+      - AAPID=3333
+  ws4:
+    image: wsapp
+    environment:
+      - AAPID=444
+    rds:
+      image: redis
