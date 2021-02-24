@@ -16,12 +16,12 @@ const publisher = redis.createClient({
   host: "rds",
 });
 
-subscriber.on("subscriber", function (channel, count) {
+subscriber.on("subscribe", function (channel, count) {
   console.log(`Server ${APPID} subscribed successfully to livechat`);
   publisher.publish("livechat", "a message");
 });
 
-subscriber.on("message", function (channel, count) {
+subscriber.on("message", function (channel, message) {
   try {
     console.log(`Server ${APPID} received message in channel ${channel}`);
     connections.forEach((c) => c.send(APPID + ":" + message));
